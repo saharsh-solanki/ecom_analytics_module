@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "c97faf61-3926-477d-8439-c8534414a7f7",
+		"name": "e-com-analytics-modules-api-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24416380"
+	},
+	"item": [
+		{
+			"name": "tenant",
+			"item": [
+				{
+					"name": "get-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"admin@admin.com\",\n    \"password\":\"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}api/tenant/token/",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"tenant",
+								"token",
+								""
+							]
+						},
+						"description": "Use this api to get the token\n\n``` django\n{\n  \"email\": \"admin@admin.com\",\n  \"password\": \"admin\"\n}\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "verify token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY4NDQzMTkxLCJpYXQiOjE2Njg0Mzk1OTEsImp0aSI6ImYzYWZmZmZkMjJlYjQyMWE4Mjc5NjY3MTVlOTQ4MTY5IiwidXNlcl9pZCI6MX0.lmIq1UqxoTZL87Wiu-z09-_06piS8RyCfQRYpoYm69s\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}api/tenant/token/verify/",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"tenant",
+								"token",
+								"verify",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get access token from refersh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY4NDQzMTkxLCJpYXQiOjE2Njg0Mzk1OTEsImp0aSI6ImYzYWZmZmZkMjJlYjQyMWE4Mjc5NjY3MTVlOTQ4MTY5IiwidXNlcl9pZCI6MX0.lmIq1UqxoTZL87Wiu-z09-_06piS8RyCfQRYpoYm69s\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}api/tenant/token/refresh/",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"tenant",
+								"token",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"Dummy\",\n    \"last_name\":\"Dummy\",\n    \"email\":\"admin21@admin.com\",\n    \"password\":\"Admin@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}api/tenant/user/",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"tenant",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create manager",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"Dumm1y\",\n    \"last_name\":\"Dummy1\",\n    \"email\":\"admin6@admin.com\",\n    \"password\":\"Admin@123\",\n    \"roles\":\"manager\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}api/tenant/user/",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"tenant",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sales",
+			"item": [
+				{
+					"name": "all sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales/",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter by region",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?region=us",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "region",
+									"value": "us"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order by sale amount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?ordering=saleAmount",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "saleAmount"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter by region manager",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?manager=5",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "manager",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter by manager per sales person",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?manager=5&salesPerson=4",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "manager",
+									"value": "5"
+								},
+								{
+									"key": "salesPerson",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total sales per Region per Manager per Salesperson",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?manager=5&salesPerson=4&region=us",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "manager",
+									"value": "5"
+								},
+								{
+									"key": "salesPerson",
+									"value": "4"
+								},
+								{
+									"key": "region",
+									"value": "us"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter by salesPerson",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?salesPerson=4",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "salesPerson",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "last 7 day",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?date=last7d",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "last7d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "last 1 day",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?date=last1d",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "last1d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "last 30 day",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}api/sales?date=last30d",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "last30d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create sale",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"region\":\"us\",\n    \"manager\":5,\n    \"salesPerson\":4,\n    \"item\":\"Silicon Cable 1\",\n    \"units\":2,\n    \"unitPrice\":2001,\n    \"saleAmount\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}api/sales/",
+							"host": [
+								"{{server-url}}api"
+							],
+							"path": [
+								"sales",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "check-server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server-url}}",
+					"host": [
+						"{{server-url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
